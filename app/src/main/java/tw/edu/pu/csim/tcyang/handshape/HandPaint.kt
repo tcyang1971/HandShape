@@ -29,6 +29,7 @@ class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
         canvas.drawPath(path, paint)
     }
 
+    /*
     override fun onTouchEvent(event: MotionEvent): Boolean {
         var xPos = event.getX()
         var yPos = event.getY()
@@ -39,4 +40,6 @@ class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
         invalidate()
         return true
     }
+
+     */
 }
