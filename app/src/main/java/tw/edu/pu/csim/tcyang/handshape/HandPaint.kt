@@ -4,12 +4,14 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 
 class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     val paint = Paint(Paint.ANTI_ALIAS_FLAG)  //畫筆(避免踞齒)
+    var path : Path = Path() //繪圖軌跡
 
     init {
         paint.color = Color.WHITE
@@ -24,6 +26,11 @@ class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
         super.onDraw(canvas)
         canvas.drawColor(Color.BLACK)  //背景
         canvas.drawRect(200f,200f,400f,600f,paint)
+
+        path.moveTo(500f,800f)
+        path.lineTo(500f,1200f)
+        path.lineTo(700f,1000f)
+        canvas.drawPath(path, paint)
     }
 
 }
