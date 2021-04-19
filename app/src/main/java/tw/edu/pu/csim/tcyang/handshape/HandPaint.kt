@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 
 class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
@@ -25,12 +26,17 @@ class HandPaint(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
         canvas.width
         super.onDraw(canvas)
         canvas.drawColor(Color.BLACK)  //背景
-        canvas.drawRect(200f,200f,400f,600f,paint)
-
-        path.moveTo(500f,800f)
-        path.lineTo(500f,1200f)
-        path.lineTo(700f,1000f)
         canvas.drawPath(path, paint)
     }
 
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        var xPos = event.getX()
+        var yPos = event.getY()
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> path.moveTo(xPos, yPos)
+            MotionEvent.ACTION_MOVE -> path.lineTo(xPos, yPos)
+        }
+        invalidate()
+        return true
+    }
 }
